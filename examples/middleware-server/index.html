@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hype | Palladium</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+        let url = location.href;
+
+        $(document).ready(function() {
+          const query = new URLSearchParams(window.location.search);
+          var queryUrl = query.get("url");
+  
+          if (queryUrl == null || "") {
+            location.href = ""
+          } else {
+            $('#loader').show();
+            $('#main').hide();
+
+            if (queryUrl.includes("https://" || "http://")) {
+              $('#url-disp').html(queryUrl);
+            } else {
+              $('#url-disp').html("https://" + queryUrl);
+            }
+            console.log("URL was set;");
+            unblock(queryUrl);
+          }
+        })
+
+        console.log("Displaying...");
+
+        function unblock(what) {
+          var input = $('#url-input');
+          var submit = $('#initiate');
+
+          input.val(what);
+          submit.click();
+        }
+      </script>
+    <style>
+      @font-face {
+        font-family: "Garamond Pro";
+        src: url('agaramondpro.otf')
+      }
+
+
+      body {
+        background: #1d232b;
+        color: #fff;
+        text-align: center;
+        font-family: "Garamond Pro", sans-serif;
+        margin: 0;
+      }
+
+      .page-container {
+        width: 90%;
+        margin: auto;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 500px;
+        border: 1px #eee;
+        border-radius: 2px;
+      }
+
+      #about-title1 {
+        margin-left: 10px;
+        margin-top: 20px;
+        font-size: 28px;
+      }
+
+      #about-desc1 {
+        text-align: center;
+      }
+
+      .fab {
+        margin-right: 3px !important;
+      }
+
+      #github {
+        color: white;
+        font-size: 30px;
+      }
+
+      .title {
+        font-size: 45px;
+        margin-left: 10px;
+      }
+
+      #url-input {
+        margin-top: 20px;
+        background: #1e2022;
+        border: 1px solid rgb(136, 136, 136);
+        height: 40px;
+        margin-left: 10px;
+        padding-left: 10px;
+        width: calc(100% - 80px);
+        color: #fff;
+        outline: none;
+        transition: background-color 0.2s ease-in-out;
+      }
+
+      #url-input::placeholder {
+        color: #bbb;
+        font-size: 15px;
+        
+      }
+
+      #url-input:hover {
+        background: #2d3033;
+      }
+
+      #url-input:focus {
+        background: #2d3033;
+      }
+
+      #initiate {
+        vertical-align: top;
+        height: 44px;
+        margin-top: 20px;
+        outline: none;
+        width: 40px;
+        margin-left: 5px;
+        color: #eee;
+        font-size: 15px;
+        border: 1px solid rgb(136, 136, 136);
+        background: #1e2022;
+        transition: background-color 0.5s ease-in-out
+      }
+
+      #initiate:hover {
+        cursor: pointer;
+        background: #2d3033;
+      }
+
+      .container-main {
+        background: #181c20;
+        border-radius: 1px;
+        border: 1px solid rgb(136, 136, 136);
+        padding: 28px 0px;
+        text-align: left;
+        width: 100%;
+        height: auto;
+      }
+
+      #error-disc {
+        text-align: center;
+        /*margin-top: 0;*/
+        padding: 15px;
+        margin-top: 17px !important;
+        background: rgb(217, 137, 137);
+        width: calc(100% - 52px);
+        margin: auto;
+        display: none;
+        border: 1px solid;
+        border-color: rgb(236, 236, 236)
+      }
+
+      .fab {
+        display: inline-block;
+      }
+
+      #loader {
+        position: absolute;
+        width: 100vw;
+        height: 100vh;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #4158D0;
+        background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+        border-radius: 0;
+        gap: 15px;
+        margin: 0;
+      }
+
+.lds-ring {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border: 8px solid white;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: white transparent transparent transparent;
+}
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+    </style>
+  </head>
+  <body>
+    <div id="loader">
+          <div class="lds-ring"><div></div><div></div><div></div></div>
+          <div style="display: flex; justify-content: center; flex-direction: column;">
+          <p style="font-size: 2rem; font-weight: 500; margin-bottom: 0;">Loading...</p>
+          <p style="font-size: 1rem; font-weight: 500; margin-top: 0;" id="url-disp"></p>
+          </div>
+    </div>
+    <div class="page-container" id="main">
+      <h1>Please head to https://unblockhype.repl.co to unblock.</h1>
+      <form class="container-main" method="POST" action="/service/gateway" style="visibility: hidden;">
+        <center>
+        <span class="title">To use this, please head to <a href="https://max.despair73.repl.co/" target="_self">Hyperbyte Max</a>.</span>
+        </center>
+        <input oninvalid="(() => {this.setCustomValidity(' ');document.getElementById('error-disc').style.display = 'block'})()" onchange="" name="url" maxlength="250" id="url-input" placeholder="ERROR___123___ERROR___123___ERROR___123___ERROR___123___ERROR___123___ERROR___123___ERROR___123___ERROR___123___ERROR___123___ERROR___123___ERROR___123___ERROR___123___ERROR___123___ERROR___123___ERROR___123___"><button id="initiate">Go</button><br><p id="error-disc">Please Wait...</p><br>
+      </form>
+    </div>
+  </body>
+</html>
